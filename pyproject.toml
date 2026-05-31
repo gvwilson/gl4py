@@ -1,0 +1,29 @@
+[project]
+name = "gl4py"
+description = "Gleam for Python Programmers"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = [
+    "mccole>=5.3.0",
+]
+
+[tool.mccole]
+brand = "gl4py"
+skips = [
+    "*.gleam",
+    "*.out",
+    "*.sh",
+    "*.toml",
+    "*.txt",
+    "*~",
+    "AGENTS.md",
+    "Makefile",
+    "build",
+    "docs",
+    "out",
+    "snippets",
+    "src",
+    "rules.mk",
+    "typos.toml",
+    "uv.lock"
+]

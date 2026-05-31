@@ -1,0 +1,7 @@
+hello_gleam/                    # project root directory
+├── README.md                   # project description
+├── gleam.toml                  # project name, version, and dependencies
+├── src                         # all project source code is under 'src'
+│   └── hello_gleam.gleam       # entry point
+└── test                        # all project test code is under 'test'
+    └── hello_gleam_test.gleam  # tests using 'gleeunit'

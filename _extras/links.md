@@ -1,0 +1,11 @@
+[elm]: https://elm-lang.org
+[pandas]: https://pandas.pydata.org
+[polars]: https://pola.rs
+[r]: https://www.r-project.org
+[erlang-download]: https://www.erlang.org/downloads
+[gleam-install]: https://gleam.run/getting-started/installing/
+[lcg]: https://en.wikipedia.org/wiki/Linear_congruential_generator
+[lustre]: https://hexdocs.pm/lustre/
+[mist]: https://hexdocs.pm/mist/
+[sqlite]: https://www.sqlite.org/
+[wisp]: https://hexdocs.pm/wisp/
