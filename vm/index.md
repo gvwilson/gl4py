@@ -145,7 +145,7 @@ using a loop and `JumpIfZero`.
 Use register 0 as the counter (start at 5, decrement each iteration)
 and register 1 as the accumulator.
 Halt when the counter reaches zero.
-Run it with `execute` and assert `regs[1] == 15`.
+Run it with `execute` and use `let assert` to verify register 1 holds `15`.
 
 </div>
 

@@ -100,6 +100,13 @@
 -   Use `let assert Ok(x) = ...` only when failure truly cannot happen
     (like initialising a known-good constant at startup)
     -   It [%g panic "panics" %] on `Error`
+    -   Unlike Python's `assert`, which is a statement that checks a condition,
+        Gleam's `let assert` is a binding form:
+        it matches a pattern and brings variables into scope
+
+[%inc src/assert_demo.gleam mark=assert_demo %]
+[%inc out/assert_demo.out %]
+
 -   Use `result.try` and `result.map` for short transformations
 -   Prefer custom error types over `String` for the error type
     in non-trivial programs

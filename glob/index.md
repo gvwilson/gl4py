@@ -135,7 +135,7 @@
 
 -   Each test covers exactly one behavior
 -   Test names end in `_test` so gleeunit discovers them automatically
--   Use `assert` to check Boolean results: `assert True = result` or `assert False = result`
+-   Use `let assert` to check Boolean results: `let assert True = result` or `let assert False = result`
 -   Run with `gleam test`
 
 ## Filtering a List of Files

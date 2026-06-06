@@ -19,7 +19,7 @@
 
 ## Why Properties?
 
--   A test like `let result = word_count(["the", "the"]); assert result == dict.from_list([#("the", 2)])`
+-   A test like `let result = word_count(["the", "the"]); let assert True = result == dict.from_list([#("the", 2)])`
     checks one input
 -   A property like "for all word lists, the total count equals the list length"
     checks an infinite family of inputs

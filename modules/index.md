@@ -93,8 +93,8 @@
 [%inc test/modules_test.gleam mark=test_examples %]
 
 -   Every function ending in `_test` runs automatically
--   Use `assert` to check values in tests:
-    `assert Ok(value) = result` gives you the unwrapped value,
+-   Use `let assert` to check values in tests:
+    `let assert Ok(value) = result` gives you the unwrapped value,
     while a mismatched assertion fails the test with a clear message
 -   `gleam test` runs all tests, `gleam test --module foo_test` runs one file
 

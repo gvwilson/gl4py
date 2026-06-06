@@ -110,10 +110,8 @@ fn add(a: Int, b: Int) -> Int {
     -   Like Python's `functools.reduce(f, items, init)`
 -   Anonymous functions use `fn(args) { body }`:
 
-```gleam
-list.map([1, 2, 3], fn(x) { x * 2 })
-// => [2, 4, 6]
-```
+[%inc src/hof_demo.gleam mark=hof_demo %]
+[%inc out/hof_demo.out %]
 
 ## The Pipeline Operator
 

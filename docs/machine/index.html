@@ -280,8 +280,8 @@
 </div>
 <ul>
 <li>Each single-step test calls <code>step</code> directly with one state and one event</li>
-<li><code>assert Ok(Reading) = result</code> verifies the exact next state</li>
-<li><code>assert Error(_) = result</code> checks that an invalid transition is rejected
+<li><code>let assert Ok(Reading) = result</code> verifies the exact next state</li>
+<li><code>let assert Error(_) = result</code> checks that an invalid transition is rejected
     without caring about the error message text</li>
 <li>The <code>run</code> tests verify complete event sequences,
     which is closer to how the machine is actually used in production</li>
