@@ -1,3 +1,4 @@
+import gleam/float
 import gleam/io
 import gleam/string
 
@@ -24,8 +25,8 @@ pub fn main() {
   io.println("circle is " <> string.inspect(s1))
   io.println("rectangle is " <> string.inspect(s2))
 
-  io.println("circle area is " <> string.inspect(area(s1)))
-  io.println("rectangle area is " <> string.inspect(area(s2)))
+  io.println("circle area is " <> float.to_string(area(s1)))
+  io.println("rectangle area is " <> float.to_string(area(s2)))
 }
 
 // mccole: area_fn

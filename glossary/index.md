@@ -29,6 +29,11 @@
 
 ## C
 
+<span id="callback">callback</span>
+:   A function passed as an argument to another function,
+    which the receiving function calls at a time of its choosing.
+    Gleam's `use` expression relies on callbacks to flatten nested code.
+
 <span id="circular_import">circular import</span>
 :   A situation in which module A imports module B and module B
     imports module A (directly or transitively).

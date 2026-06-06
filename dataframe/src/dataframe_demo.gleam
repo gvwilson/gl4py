@@ -1,4 +1,5 @@
 import gleam/dict
+import gleam/int
 import gleam/io
 import gleam/list
 import gleam/result
@@ -150,13 +151,13 @@ pub fn main() {
   case make(data) {
     Error(msg) -> io.println("error: " <> msg)
     Ok(df) -> {
-      io.println("nrows=" <> string.inspect(nrows(df)))
-      io.println("ncols=" <> string.inspect(ncols(df)))
+      io.println("nrows=" <> int.to_string(nrows(df)))
+      io.println("ncols=" <> int.to_string(ncols(df)))
       io.println("total score=" <> string.inspect(col_sum(df, "score")))
       case filter_rows(df, "age", fn(age) { age >= 30 }) {
         Error(msg) -> io.println("filter error: " <> msg)
         Ok(seniors) -> {
-          io.println("age >= 30: " <> string.inspect(nrows(seniors)) <> " rows")
+          io.println("age >= 30: " <> int.to_string(nrows(seniors)) <> " rows")
           io.println("names: " <> string.inspect(str_col(seniors, "name")))
         }
       }

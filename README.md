@@ -11,6 +11,7 @@
 1.  [Getting Started, Types, and Values](@/basics/)
 1.  [Functions, Pattern Matching, Lists, and Pipelines](@/functions/)
 1.  [Results, Options, and Error Handling](@/errors/)
+1.  [The use Expression](@/use/)
 1.  [Modules, Imports, and Testing](@/modules/)
 1.  [MapReduce](@/mapreduce/)
 1.  [Glob Pattern Matcher](@/glob/)

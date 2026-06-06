@@ -1,3 +1,4 @@
+import gleam/bool
 import gleam/io
 import gleam/list
 import gleam/string
@@ -23,7 +24,7 @@ pub fn main() {
 fn try(pat: List(Elem), word: String) -> Bool {
   let result = match_pattern(pat, word)
   io.println(
-    string.inspect(pat) <> " and '" <> word <> "' == " <> string.inspect(result),
+    string.inspect(pat) <> " and '" <> word <> "' == " <> bool.to_string(result),
   )
   result
 }

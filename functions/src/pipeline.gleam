@@ -1,6 +1,6 @@
+import gleam/int
 import gleam/io
 import gleam/list
-import gleam/string
 
 pub fn main() {
   // mccole: pipeline
@@ -10,6 +10,6 @@ pub fn main() {
     |> list.filter(fn(x) { x > 10 })
     |> list.fold(0, fn(acc, x) { acc + x })
 
-  io.println("pipeline result is " <> string.inspect(result))
+  io.println("pipeline result is " <> int.to_string(result))
   // mccole: /pipeline
 }

@@ -117,7 +117,7 @@ pub fn main() {
   let csv = "name,age,score\nAlice,30,88\nBob,25,92\nCarol,35,79\n"
 
   let row_count = fold_with_header(csv, 0, fn(acc, _) { acc + 1 })
-  io.println("data rows: " <> string.inspect(row_count))
+  io.println("data rows: " <> int.to_string(row_count))
 
   let total_score =
     fold_with_header(csv, 0, fn(acc, row) {
@@ -130,9 +130,9 @@ pub fn main() {
         _ -> acc
       }
     })
-  io.println("total score: " <> string.inspect(total_score))
+  io.println("total score: " <> int.to_string(total_score))
 
   let chunk_count = fold_csv(csv, 0, fn(acc, _) { acc + 1 })
-  io.println("chunk fold row count: " <> string.inspect(chunk_count))
+  io.println("chunk fold row count: " <> int.to_string(chunk_count))
   // mccole: /main_example
 }

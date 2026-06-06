@@ -1,13 +1,14 @@
+import gleam/bool
 import gleam/io
 import gleam/list
 import gleam/string
 
 pub fn main() {
   io.println(
-    "'racecar' is palindrome: " <> string.inspect(is_palindrome("racecar")),
+    "'racecar' is palindrome: " <> bool.to_string(is_palindrome("racecar")),
   )
   io.println(
-    "'gleam' is palindrome: " <> string.inspect(is_palindrome("gleam")),
+    "'gleam' is palindrome: " <> bool.to_string(is_palindrome("gleam")),
   )
 }
 

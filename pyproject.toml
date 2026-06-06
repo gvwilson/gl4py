@@ -20,6 +20,7 @@ skips = [
     "Makefile",
     "build",
     "docs",
+    "log",
     "out",
     "snippets",
     "src",

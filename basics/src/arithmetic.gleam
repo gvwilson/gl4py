@@ -1,16 +1,16 @@
+import gleam/float
 import gleam/int
 import gleam/io
-import gleam/string
 
 // mccole: arithmetic
 pub fn main() {
   let sum = 2 + 2
-  io.println(string.inspect(sum))
+  io.println(int.to_string(sum))
 
   let product = 6 * 7
-  io.println(string.inspect(product))
+  io.println(int.to_string(product))
 
   let float_div = int.to_float(10) /. int.to_float(3)
-  io.println(string.inspect(float_div))
+  io.println(float.to_string(float_div))
 }
 // mccole: /arithmetic

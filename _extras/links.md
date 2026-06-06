@@ -4,6 +4,7 @@
 [r]: https://www.r-project.org
 [erlang-download]: https://www.erlang.org/downloads
 [gleam-install]: https://gleam.run/getting-started/installing/
+[gleam-tour-use]: https://tour.gleam.run/advanced-features/use/
 [lcg]: https://en.wikipedia.org/wiki/Linear_congruential_generator
 [lustre]: https://hexdocs.pm/lustre/
 [mist]: https://hexdocs.pm/mist/
