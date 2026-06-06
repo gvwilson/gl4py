@@ -10,6 +10,8 @@ All contributors must abide by our Code of Conduct.
 He was the co-founder and first Executive Director of Software Carpentry
 and received ACM SIGSOFT's Influential Educator Award in 2020.
 
+Many thanks to [Rebecca](https://becca.monster/) for early feedback.
+
 ## FAQ
 
 Do you need help?
@@ -61,7 +63,7 @@ These rules apply to all lesson prose.
 -   Each lesson lives in its own directory (`lessonname/index.md`).
 -   The lesson order is defined in `README.md`.
 -   Start each lesson with a `<div class="callout">` listing the three to five
-    key takeaways as bullet points.
+    key takeaways as sentences.
 -   Write self-test questions as `<details>` blocks
     (see any existing lesson for the exact format).
 -   Write exercises under an H2 heading named `Exercises`.
@@ -72,23 +74,22 @@ These rules apply to all lesson prose.
 
 ## Gleam Code Style
 
-All Gleam source files live in `lessonname/src/` and their captured output in `lessonname/out/`.
+Gleam source files live in `lesson/src/`; their tests are in `lesson/test/`
+and their captured output is in `lesson/out/`.
 
 -   Run `gleam format` on every `.gleam` file before committing.
-    The CI check will fail if any file does not pass `gleam format --check`.
 -   All `gleam.toml` files must specify `gleam_stdlib = ">= 1.0.0 and < 2.0.0"`.
     Do not use `>= 0.34.0`; that range predates the stable 1.0 release.
 -   Annotate all public top-level functions and types with explicit type signatures.
     Type inference is fine for local bindings and private helpers.
--   Use meaningful variable names.
-    Write `items` instead of `lst`, `numerator` and `denominator` instead of `a` and `b`
-    when the names carry meaning, and avoid single-letter names except for
-    genuinely generic type parameters (`a`, `b`) and short mathematical expressions.
+-   Use meaningful variable names (e.g., `items` instead of `lst`).
+    Avoid single-letter names except for genuinely generic type parameters (`a`, `b`)
+    and short mathematical expressions.
 -   Prefer `int.to_string`, `float.to_string`, and similar concrete conversion functions
     over `string.inspect` when printing known types.
     Reserve `string.inspect` for debugging values whose type is not known statically.
 -   Do not use `io.debug`; it was removed from the standard library.
-    Use `echo` for quick debug printing or `io.println` with an explicit conversion.
+    Use `io.println` with an explicit conversion rather than `echo`.
 -   Write tests using the `assert` keyword.
     The `gleeunit/should` module is deprecated; do not use `should.equal`,
     `should.be_ok`, or any other function from it.
