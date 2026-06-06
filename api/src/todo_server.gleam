@@ -14,6 +14,7 @@ pub type Msg {
   MarkDone(Int)
   Remove(Int)
 }
+
 // mccole: /todo_types
 
 pub fn main() {
@@ -37,10 +38,7 @@ pub fn main() {
 }
 
 // mccole: logic_fns
-pub fn add(
-  todos: List(Todo),
-  title: String,
-) -> #(Todo, List(Todo)) {
+pub fn add(todos: List(Todo), title: String) -> #(Todo, List(Todo)) {
   let id = list.length(todos)
   let item = Todo(id, title, False)
   #(item, [item, ..todos])
@@ -50,10 +48,7 @@ pub fn get_all(todos: List(Todo)) -> List(Todo) {
   todos
 }
 
-pub fn mark_done(
-  todos: List(Todo),
-  id: Int,
-) -> List(Todo) {
+pub fn mark_done(todos: List(Todo), id: Int) -> List(Todo) {
   list.map(todos, fn(t) {
     case t.id == id {
       True -> Todo(t.id, t.title, True)
@@ -65,6 +60,7 @@ pub fn mark_done(
 pub fn remove(todos: List(Todo), id: Int) -> List(Todo) {
   list.filter(todos, fn(t) { t.id != id })
 }
+
 // mccole: /logic_fns
 
 // mccole: encode_fn

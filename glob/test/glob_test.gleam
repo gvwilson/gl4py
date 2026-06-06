@@ -21,6 +21,7 @@ pub fn wildcard_many_test() {
   match_pattern([Wildcard, Literal(".gleam")], "mymodule.gleam")
   |> should.be_true()
 }
+
 // mccole: /examples
 
 pub fn literal_no_match_test() {

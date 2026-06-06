@@ -9,23 +9,23 @@ pub type Elem {
 }
 
 pub fn main() {
-  let files = ["main.gleam", "util.gleam", "data1.csv", "data2.csv", "notes.txt"]
-  io.println(
-    "*.gleam: " <> string.inspect(filter_files("*.gleam", files)),
-  )
-  io.println(
-    "data?.csv: " <> string.inspect(filter_files("data?.csv", files)),
-  )
+  let files = [
+    "main.gleam",
+    "util.gleam",
+    "data1.csv",
+    "data2.csv",
+    "notes.txt",
+  ]
+  io.println("*.gleam: " <> string.inspect(filter_files("*.gleam", files)))
+  io.println("data?.csv: " <> string.inspect(filter_files("data?.csv", files)))
 }
 
 // mccole: filter_fn
-pub fn filter_files(
-  pattern: String,
-  files: List(String),
-) -> List(String) {
+pub fn filter_files(pattern: String, files: List(String)) -> List(String) {
   let elems = parse_pattern(pattern)
   list.filter(files, match_pattern(elems, _))
 }
+
 // mccole: /filter_fn
 
 fn parse_pattern(s: String) -> List(Elem) {
@@ -50,8 +50,8 @@ fn take_literal(
 ) -> #(String, List(String)) {
   case chars {
     [] -> #(acc |> list.reverse |> string.join(""), [])
-    ["*", .._] -> #(acc |> list.reverse |> string.join(""), chars)
-    ["?", .._] -> #(acc |> list.reverse |> string.join(""), chars)
+    ["*", ..] -> #(acc |> list.reverse |> string.join(""), chars)
+    ["?", ..] -> #(acc |> list.reverse |> string.join(""), chars)
     [c, ..rest] -> take_literal(rest, [c, ..acc])
   }
 }
@@ -92,7 +92,8 @@ fn drop_prefix(
 ) -> Result(List(String), Nil) {
   case prefix, chars {
     [], remaining -> Ok(remaining)
-    [p, ..pat_rest], [c, ..char_rest] if p == c -> drop_prefix(pat_rest, char_rest)
+    [p, ..pat_rest], [c, ..char_rest] if p == c ->
+      drop_prefix(pat_rest, char_rest)
     _, _ -> Error(Nil)
   }
 }

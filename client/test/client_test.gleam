@@ -1,9 +1,9 @@
+import decode_demo.{Issue, issue_decoder}
 import gleam/dynamic/decode
 import gleam/json
 import gleam/list
 import gleeunit
 import gleeunit/should
-import decode_demo.{Issue, issue_decoder}
 
 pub fn main() {
   gleeunit.main()

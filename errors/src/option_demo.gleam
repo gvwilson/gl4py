@@ -21,6 +21,7 @@ fn option_inspect(opt: Option(Int)) -> String {
     None -> "nothing"
   }
 }
+
 // mccole: /option_case
 
 fn result_to_option(r: Result(a, b)) -> Option(a) {
@@ -34,7 +35,7 @@ fn result_to_option(r: Result(a, b)) -> Option(a) {
 fn first_positive(nums: List(Int)) -> Option(Int) {
   case nums {
     [] -> None
-    [x, .._rest] if x > 0 -> Some(x)
+    [x, ..] if x > 0 -> Some(x)
     [_, ..rest] -> first_positive(rest)
   }
 }

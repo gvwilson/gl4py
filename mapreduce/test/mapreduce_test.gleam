@@ -18,6 +18,7 @@ pub fn word_count_basic_test() {
   dict.get(result, "c")
   |> should.equal(Ok(1))
 }
+
 // mccole: /word_count_test
 
 pub fn word_count_empty_test() {

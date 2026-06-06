@@ -8,6 +8,7 @@ import gleam/string
 pub type Issue {
   Issue(number: Int, title: String, state: String)
 }
+
 // mccole: /issue_type
 
 pub fn main() {
@@ -42,6 +43,7 @@ pub fn decode_issues(json_str: String) -> Result(List(Issue), String) {
     Error(e) -> Error("decode failed: " <> string.inspect(e))
   }
 }
+
 // mccole: /decode_fn
 
 // mccole: decoder_fn

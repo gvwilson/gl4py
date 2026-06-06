@@ -24,6 +24,7 @@ pub type Msg {
   Decrement
   Reset
 }
+
 // mccole: /model_msg_type
 
 pub fn init() -> Model {
@@ -38,6 +39,7 @@ pub fn update(model: Model, msg: Msg) -> Model {
     Reset -> Model(0)
   }
 }
+
 // mccole: /update_fn
 
 // mccole: view_fn
@@ -47,9 +49,6 @@ pub fn view(model: Model) -> String {
     c if c < 0 -> "-"
     _ -> ""
   }
-  "Count: "
-  <> sign
-  <> int.to_string(model.count)
-  <> " (click + or - to change)"
+  "Count: " <> sign <> int.to_string(model.count) <> " (click + or - to change)"
 }
 // mccole: /view_fn

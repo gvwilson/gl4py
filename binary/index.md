@@ -159,7 +159,7 @@ ensures both sides agree on the byte order.
 ### Name and age record (15 minutes)
 
 Pack a record containing a name (`String`) and an age (`Int`).
-Unpack it and confirm with `should.equal`.
+Unpack it and confirm with `assert`.
 Then intentionally truncate the packed bytes to one fewer byte
 and confirm `unpack` returns an `Error`.
 

@@ -41,6 +41,9 @@ fn add(a: Int, b: Int) -> Int {
     -   The `if` condition must also be true for the arm to match
     -   Without guards this would require a `case` inside a `case`
 -   The arms are tried in order, with the first match winning
+-   You can use `|` to share a single arm across multiple patterns:
+    `a, b, _ | _, a, b | a, _, b if a == b -> Isosceles`
+    is equivalent to writing three separate guarded arms
 -   The compiler verifies that the arms cover all possibilities
 
 [%inc src/palindrome.gleam mark=palindrome %]
@@ -57,7 +60,7 @@ fn add(a: Int, b: Int) -> Int {
 
 [%inc src/recursion.gleam mark=length_fn %]
 
--   `case lst { [] -> 0 [_, ..rest] -> 1 + length(rest) }` is the
+-   `case items { [] -> 0 [_, ..rest] -> 1 + length(rest) }` is the
     standard recursive structure on lists
     -   `[]` matches the empty list, so the [%g base_case "base case" %] returns 0
     -   `[_, ..rest]` matches a non-empty list:
@@ -85,22 +88,26 @@ fn add(a: Int, b: Int) -> Int {
 [%inc src/recursion.gleam mark=take_fn %]
 [%inc out/recursion.out %]
 
--   Matching on two values simultaneously: `case lst, n { ... }`
+-   Matching on two values simultaneously: `case items, n { ... }`
 -   Three base cases: `n = 0` (done), empty list (done), otherwise take one element and recurse
 -   The result is built by [%g prepend "prepending" %] `[x, ..take(rest, n - 1)]`
+-   Note: this version is *not* tail-recursive
+    because the prepend waits for the recursive call to return
+    -   A tail-recursive version would use an accumulator
+        and reverse the result at the end
 
 ## Lists and Higher-Order Functions
 
 -   Gleam's `List` type is a singly-linked list
 -   The standard library provides `list.map`, `list.filter`, and `list.fold`
     that cover most iteration needs
--   `list.map(lst, f)` applies `f` to every element and returns a new list
-    -   Like Python's `[f(x) for x in lst]`
--   `list.filter(lst, pred)` keeps elements where `pred` returns `True`
-    -   Like Python's `[x for x in lst if pred(x)]`
--   `list.fold(lst, init, f)` combines elements left to right using `f`
+-   `list.map(items, f)` applies `f` to every element and returns a new list
+    -   Like Python's `[f(x) for x in items]`
+-   `list.filter(items, pred)` keeps elements where `pred` returns `True`
+    -   Like Python's `[x for x in items if pred(x)]`
+-   `list.fold(items, init, f)` combines elements left to right using `f`
     -   `list.fold([1,2,3], 0, fn(acc, x) { acc + x })` gives `6`
-    -   Like Python's `functools.reduce(f, lst, init)`
+    -   Like Python's `functools.reduce(f, items, init)`
 -   Anonymous functions use `fn(args) { body }`:
 
 ```gleam
@@ -126,7 +133,7 @@ list.map([1, 2, 3], fn(x) { x * 2 })
     -   Much cleaner than Python equivalent
 
 ```python
-reduce(lambda a, x: a+x, filter(lambda x: x>10, map(lambda x: x*2, lst)), 0)
+reduce(lambda a, x: a+x, filter(lambda x: x>10, map(lambda x: x*2, items)), 0)
 ```
 
 ## Check Understanding
@@ -161,7 +168,7 @@ with one of these three functions in Gleam.
 
 ### Recursive sum (5 minutes)
 
-Write `sum(lst: List(Int)) -> Int` using tail recursion with an accumulator.
+Write `sum(items: List(Int)) -> Int` using tail recursion with an accumulator.
 Verify that `sum([1, 2, 3, 4, 5])` returns `15` and `sum([])` returns `0`.
 
 </div>
@@ -182,6 +189,18 @@ Test it with `"racecar"`, `"gleam"`, and at least one string with a non-ASCII ch
 Use a single pipeline to take the list `[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]`,
 keep only odd numbers, square each one, and sum the results.
 The answer should be `165`.
+
+</div>
+
+<div class="exercise" markdown="1">
+
+### Tail-recursive take (10 minutes)
+
+The `take` function in this lesson is not tail-recursive.
+Write `take_tail(items: List(a), n: Int) -> List(a)` using tail recursion
+with an accumulator, reversing the result at the end.
+Verify that `take_tail([1, 2, 3, 4, 5], 3)` returns `[1, 2, 3]`
+and `take_tail([1, 2], 5)` returns `[1, 2]`.
 
 </div>
 

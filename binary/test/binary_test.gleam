@@ -30,6 +30,7 @@ pub fn roundtrip_mixed_test() {
   |> unpack(formats, _)
   |> should.equal(Ok(values))
 }
+
 // mccole: /examples
 
 pub fn empty_roundtrip_test() {

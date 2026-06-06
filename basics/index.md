@@ -32,7 +32,7 @@
 -   `<>` concatenates strings
     -   Gleam does not overload `+` to add strings
 -   `io.println` prints a line with a newline
-    -   `io.debug` prints any value using its debug representation
+    -   `echo` prints any value using its debug representation
 
 ## Arithmetic
 
@@ -44,7 +44,10 @@
 -   Gleam separates integer and floating-point operators:
     `+`, `-`, `*`, `/` for `Int`; `+.`, `-.`, `*.`, `/.` for `Float`
     -   `int.to_float` converts before you can mix them
--   Yes, this seems pedantic, but it's consistent
+-   Integer division by zero (and modulo by zero) returns 0
+    rather than raising an error
+    -   This is different from Python, where `1 / 0` raises `ZeroDivisionError`
+-   These rules seem pedantic, but they are consistent
 
 ## Built-in Types
 
@@ -55,6 +58,12 @@
 -   `String`: UTF-8 text, like Python's `str`
 -   `Bool`: `True` or `False`, like Python's `bool`
 -   `Nil`: the unit value, similar to Python's `None` but much rarer
+-   Other types built into the language
+    (introduced in later lessons) include:
+    -   `List(a)` for sequences of values of the same type
+    -   `Result(a, e)` for operations that can succeed or fail
+    -   `BitArray` for binary data at the bit level
+    -   `UtfCodepoint` for individual Unicode characters
 
 ## Custom Types
 
@@ -124,7 +133,8 @@
 -   `let #(a, b, c) = t` [%g destructuring "destructs" %] the tuple into three bindings
     -   `a` is `1`, `b` is `"hello"`, `c` is `True`
     -   Like Python's `a, b, c = t` but the `#` makes clear a tuple is expected
--   Gleam does not have indexed access like `t[0]`
+-   Gleam does have indexed tuple access using dot notation:
+    `tuple.0` for the first element, `tuple.1` for the second, etc.
     -   Destructuring is the idiomatic way to extract tuple fields
 
 ## Type Inference
@@ -135,7 +145,8 @@
     -   `let s = "hello"` infers `s: String`
     -   `fn area(shape: Shape) -> Float` carries explicit annotations,
          but they are optional for local bindings
--   You can always add annotations for documentation:
+-   Gleam's official recommendation is to annotate all public top-level
+    definitions (exported functions and custom type variants)
     -   The compiler checks annotations against the inferred type
         and reports a mismatch as an error
 

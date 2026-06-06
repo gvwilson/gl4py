@@ -10,6 +10,7 @@ pub type Todo {
 pub type Database {
   Database(todos: List(Todo), next_id: Int)
 }
+
 // mccole: /db_type
 
 pub fn main() {
@@ -67,9 +68,6 @@ pub fn mark_done(db: Database, id: Int) -> Database {
 }
 
 pub fn delete_todo(db: Database, id: Int) -> Database {
-  Database(
-    list.filter(db.todos, fn(t) { t.id != id }),
-    db.next_id,
-  )
+  Database(list.filter(db.todos, fn(t) { t.id != id }), db.next_id)
 }
 // mccole: /crud_fns

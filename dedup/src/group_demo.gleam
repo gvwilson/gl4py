@@ -43,17 +43,17 @@ fn group_by_hash(
     dict.insert(acc, hash, [path, ..existing])
   })
 }
+
 // mccole: /group_fn
 
 // mccole: find_fn
-pub fn find_duplicates(
-  files: List(#(String, String)),
-) -> List(List(String)) {
+pub fn find_duplicates(files: List(#(String, String))) -> List(List(String)) {
   files
   |> group_by_hash
   |> dict.values
   |> list.filter(fn(paths) { list.length(paths) > 1 })
 }
+
 // mccole: /find_fn
 
 // mccole: report_fn

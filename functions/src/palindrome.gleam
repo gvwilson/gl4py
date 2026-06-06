@@ -3,8 +3,12 @@ import gleam/list
 import gleam/string
 
 pub fn main() {
-  io.println("'racecar' is palindrome: " <> string.inspect(is_palindrome("racecar")))
-  io.println("'gleam' is palindrome: " <> string.inspect(is_palindrome("gleam")))
+  io.println(
+    "'racecar' is palindrome: " <> string.inspect(is_palindrome("racecar")),
+  )
+  io.println(
+    "'gleam' is palindrome: " <> string.inspect(is_palindrome("gleam")),
+  )
 }
 
 // mccole: palindrome

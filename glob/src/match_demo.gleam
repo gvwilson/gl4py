@@ -8,22 +8,23 @@ pub type Elem {
   AnyChar
   Wildcard
 }
+
 // mccole: /elem_type
 
 pub fn main() {
-  list.each(
-    ["hello.gleam", "hello.rs", ".gleam"],
-    fn(word) { try([Wildcard, Literal(".gleam")], word) }
-  )
-  list.each(
-    ["dot", "dat", "dog"],
-    fn(word) { try([Literal("d"), AnyChar, Literal("t")], word) }
-  )
+  list.each(["hello.gleam", "hello.rs", ".gleam"], fn(word) {
+    try([Wildcard, Literal(".gleam")], word)
+  })
+  list.each(["dot", "dat", "dog"], fn(word) {
+    try([Literal("d"), AnyChar, Literal("t")], word)
+  })
 }
 
 fn try(pat: List(Elem), word: String) -> Bool {
   let result = match_pattern(pat, word)
-  io.println(string.inspect(pat) <> " and '" <> word <> "' == " <> string.inspect(result))
+  io.println(
+    string.inspect(pat) <> " and '" <> word <> "' == " <> string.inspect(result),
+  )
   result
 }
 
@@ -57,6 +58,7 @@ fn match_pattern_chars(pattern: List(Elem), chars: List(String)) -> Bool {
     _, _ -> False
   }
 }
+
 // mccole: /match_fn
 
 fn string_to_chars(s: String) -> List(String) {
@@ -69,7 +71,8 @@ fn drop_prefix(
 ) -> Result(List(String), Nil) {
   case prefix, chars {
     [], remaining -> Ok(remaining)
-    [p, ..pat_rest], [c, ..char_rest] if p == c -> drop_prefix(pat_rest, char_rest)
+    [p, ..pat_rest], [c, ..char_rest] if p == c ->
+      drop_prefix(pat_rest, char_rest)
     _, _ -> Error(Nil)
   }
 }

@@ -2,7 +2,9 @@ import gleam/int
 import gleam/list
 import gleeunit
 import gleeunit/should
-import pool_demo.{Pool, Process, Worker, crash_worker, dispatch_jobs, restart_worker}
+import pool_demo.{
+  Pool, Process, Worker, crash_worker, dispatch_jobs, restart_worker,
+}
 
 pub fn main() {
   gleeunit.main()

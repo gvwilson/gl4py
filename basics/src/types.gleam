@@ -12,6 +12,7 @@ type Shape {
   Circle(Float)
   Rectangle(Float, Float)
 }
+
 // mccole: /type_defs
 
 pub fn main() {

@@ -20,6 +20,7 @@ pub type Op {
 pub type Machine {
   Machine(ip: Int, regs: List(Int), ram: List(Int))
 }
+
 // mccole: /op_machine_type
 
 pub fn main() {
@@ -30,7 +31,8 @@ pub fn main() {
     Add(2, 0, 1),
     Halt,
   ]
-  let machine = Machine(ip: 0, regs: list.repeat(0, num_regs), ram: assemble(program))
+  let machine =
+    Machine(ip: 0, regs: list.repeat(0, num_regs), ram: assemble(program))
   let result = execute(machine)
   io.println(string.inspect(result.regs))
   // mccole: /run_example
@@ -48,11 +50,14 @@ fn encode(op: Op) -> Int {
   case op {
     Halt -> 0
     Load(reg, val) -> 1 * field_size * field_size + reg * field_size + val
-    Add(dst, a, b) -> 2 * field_size * field_size + dst * field_size + a * 16 + b
+    Add(dst, a, b) ->
+      2 * field_size * field_size + dst * field_size + a * 16 + b
     Jump(addr) -> 3 * field_size * field_size + addr
-    JumpIfZero(reg, addr) -> 4 * field_size * field_size + reg * field_size + addr
+    JumpIfZero(reg, addr) ->
+      4 * field_size * field_size + reg * field_size + addr
   }
 }
+
 // mccole: /assemble_fn
 
 // mccole: execute_fn
@@ -73,8 +78,7 @@ pub fn execute(machine: Machine) -> Machine {
           let new_regs = set_reg(machine.regs, dst, va + vb)
           execute(Machine(machine.ip + 1, new_regs, machine.ram))
         }
-        Jump(addr) ->
-          execute(Machine(addr, machine.regs, machine.ram))
+        Jump(addr) -> execute(Machine(addr, machine.regs, machine.ram))
         JumpIfZero(reg, addr) -> {
           case get_reg(machine.regs, reg) {
             0 -> execute(Machine(addr, machine.regs, machine.ram))
@@ -85,6 +89,7 @@ pub fn execute(machine: Machine) -> Machine {
     }
   }
 }
+
 // mccole: /execute_fn
 
 fn decode(word: Int) -> Op {
@@ -148,5 +153,10 @@ fn get_reg(regs: List(Int), idx: Int) -> Int {
 }
 
 fn set_reg(regs: List(Int), idx: Int, val: Int) -> List(Int) {
-  list.index_map(regs, fn(v, i) { case i == idx { True -> val  False -> v } })
+  list.index_map(regs, fn(v, i) {
+    case i == idx {
+      True -> val
+      False -> v
+    }
+  })
 }

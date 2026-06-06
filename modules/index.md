@@ -19,6 +19,9 @@
 -   Standard library modules follow the same convention:
     `import gleam/list`, `import gleam/dict`, `import gleam/string`
     -   [%g circular_import "Circular imports" %] are not allowed
+    -   Gleam packages are *not* automatically namespaced:
+        if two dependencies both export a module named `utils`,
+        there will be a name conflict
 
 ## This Lesson
 
@@ -90,8 +93,9 @@
 [%inc test/modules_test.gleam mark=test_examples %]
 
 -   Every function ending in `_test` runs automatically
--   `should.equal(expected)` asserts the piped value equals `expected`
--   `should.be_ok` and `should.be_error` check `Result` values
+-   Use `assert` to check values in tests:
+    `assert Ok(value) = result` gives you the unwrapped value,
+    while a mismatched assertion fails the test with a clear message
 -   `gleam test` runs all tests, `gleam test --module foo_test` runs one file
 
 ## Type Aliases
@@ -102,9 +106,9 @@
 
 -   `Filename` and `String` are identical to the compiler; one is just more descriptive
 -   Unlike opaque types, aliases do not hide constructors
--   Use them to make function signatures communicate intent:
-    `fn group(files: List(#(Filename, Hash))) -> FileMap` is clearer than
-    `fn group(files: List(#(String, String))) -> dict.Dict(String, List(String))`
+-   Type aliases are rarely used in ordinary Gleam code
+    -   Their main practical use is to re-export an opaque internal type
+        under a public name without exposing its constructors
 
 ## Check Understanding
 

@@ -49,7 +49,7 @@
 -   `decode.list(issue_decoder())` wraps the single-item decoder
     to handle a JSON array
 -   `json.parse` parses the string and runs the decoder
--   `string.inspect` converts the decode error to a human-readable string
+-   Pattern match on the error to produce a human-readable string
     for display or logging
 
 ## Making HTTP Requests

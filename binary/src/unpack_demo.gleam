@@ -29,13 +29,13 @@ pub fn main() {
   let failed = unpack(formats, corrupted)
   io.println(string.inspect(failed))
 }
+
 // mccole: /corrupt_demo
 
 fn pack(formats: List(Fmt), values: List(Value)) -> BitArray {
   case formats, values {
     [], [] -> <<>>
-    [FInt, ..frest], [VInt(n), ..vrest] ->
-      <<n:32-big, pack(frest, vrest):bits>>
+    [FInt, ..frest], [VInt(n), ..vrest] -> <<n:32-big, pack(frest, vrest):bits>>
     [FStr, ..frest], [VStr(s), ..vrest] -> {
       let bytes = <<s:utf8>>
       let len = bit_array.byte_size(bytes)
@@ -45,10 +45,7 @@ fn pack(formats: List(Fmt), values: List(Value)) -> BitArray {
   }
 }
 
-fn unpack(
-  formats: List(Fmt),
-  data: BitArray,
-) -> Result(List(Value), String) {
+fn unpack(formats: List(Fmt), data: BitArray) -> Result(List(Value), String) {
   unpack_loop(formats, data, [])
 }
 

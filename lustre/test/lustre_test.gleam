@@ -1,6 +1,6 @@
+import counter_demo.{Decrement, Increment, Reset, init, update}
 import gleeunit
 import gleeunit/should
-import counter_demo.{Decrement, Increment, Reset, init, update}
 
 pub fn main() {
   gleeunit.main()

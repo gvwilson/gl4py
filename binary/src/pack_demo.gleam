@@ -13,6 +13,7 @@ pub type Fmt {
   FInt
   FStr
 }
+
 // mccole: /value_types
 
 pub fn main() {
@@ -30,8 +31,7 @@ pub fn main() {
 pub fn pack(formats: List(Fmt), values: List(Value)) -> BitArray {
   case formats, values {
     [], [] -> <<>>
-    [FInt, ..frest], [VInt(n), ..vrest] ->
-      <<n:32-big, pack(frest, vrest):bits>>
+    [FInt, ..frest], [VInt(n), ..vrest] -> <<n:32-big, pack(frest, vrest):bits>>
     [FStr, ..frest], [VStr(s), ..vrest] -> {
       let bytes = string_to_bytes(s)
       let len = bit_array.byte_size(bytes)
@@ -40,6 +40,7 @@ pub fn pack(formats: List(Fmt), values: List(Value)) -> BitArray {
     _, _ -> <<>>
   }
 }
+
 // mccole: /pack_fn
 
 pub fn unpack(
@@ -66,6 +67,7 @@ fn unpack_loop(
     _, _ -> Error("unexpected end of data")
   }
 }
+
 // mccole: /unpack_fn
 
 fn string_to_bytes(s: String) -> BitArray {

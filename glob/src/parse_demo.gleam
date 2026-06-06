@@ -36,6 +36,7 @@ fn parse_chars(chars: List(String), acc: List(Elem)) -> List(Elem) {
     }
   }
 }
+
 // mccole: /parse_fn
 
 fn take_literal(
@@ -44,8 +45,8 @@ fn take_literal(
 ) -> #(String, List(String)) {
   case chars {
     [] -> #(acc |> list.reverse |> string.join(""), [])
-    ["*", .._] -> #(acc |> list.reverse |> string.join(""), chars)
-    ["?", .._] -> #(acc |> list.reverse |> string.join(""), chars)
+    ["*", ..] -> #(acc |> list.reverse |> string.join(""), chars)
+    ["?", ..] -> #(acc |> list.reverse |> string.join(""), chars)
     [c, ..rest] -> take_literal(rest, [c, ..acc])
   }
 }

@@ -135,7 +135,7 @@
 
 -   Each test covers exactly one behavior
 -   Test names end in `_test` so gleeunit discovers them automatically
--   `should.be_true()` and `should.be_false()` are clearer than `should.equal(True)` for Boolean results
+-   Use `assert` to check Boolean results: `assert True = result` or `assert False = result`
 -   Run with `gleam test`
 
 ## Filtering a List of Files

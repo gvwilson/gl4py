@@ -9,6 +9,7 @@ pub type Entry {
   Set(key: String, value: String)
   Delete(key: String)
 }
+
 // mccole: /entry_type
 
 pub fn main() {
@@ -45,6 +46,7 @@ fn get_scan(log: List(Entry), key: String) -> Option(String) {
     [_, ..rest] -> get_scan(rest, key)
   }
 }
+
 // mccole: /get_fn
 
 // mccole: keys_fn
@@ -58,6 +60,7 @@ pub fn keys(log: List(Entry)) -> List(String) {
   })
   |> dict.keys
 }
+
 // mccole: /keys_fn
 
 // mccole: compact_fn
@@ -71,8 +74,12 @@ pub fn compact(log: List(Entry)) -> List(Entry) {
     })
 
   dict.to_list(live_dict)
-  |> list.map(fn(item) { let #(k, v) = item  Set(k, v) })
+  |> list.map(fn(item) {
+    let #(k, v) = item
+    Set(k, v)
+  })
 }
+
 // mccole: /compact_fn
 
 // mccole: index_fns

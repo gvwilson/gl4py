@@ -101,8 +101,8 @@
 [%inc test/machine_test.gleam mark=tests %]
 
 -   Each single-step test calls `step` directly with one state and one event
--   `should.equal(Ok(Reading))` verifies the exact next state
--   `should.be_error()` checks that an invalid transition is rejected
+-   `assert Ok(Reading) = result` verifies the exact next state
+-   `assert Error(_) = result` checks that an invalid transition is rejected
     without caring about the error message text
 -   The `run` tests verify complete event sequences,
     which is closer to how the machine is actually used in production

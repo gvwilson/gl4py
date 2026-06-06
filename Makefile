@@ -34,6 +34,10 @@ count:
 		fi \
 	done
 
+## format: reformat Gleam files
+format:
+	gleam format $$(find . -name '*.gleam' | grep -v /build/ | grep -v /snippets/)
+
 ## serve: serve generated HTML on port 8000
 serve:
 	@python -m http.server -d docs 8000

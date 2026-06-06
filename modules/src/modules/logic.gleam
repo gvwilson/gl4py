@@ -7,6 +7,7 @@ import modules/types
 pub fn add_task(tasks: List(types.Todo), title: String) -> List(types.Todo) {
   [types.Todo(title, types.Active), ..tasks]
 }
+
 // mccole: /add_task
 
 pub fn mark_done(tasks: List(types.Todo), index: Int) -> List(types.Todo) {

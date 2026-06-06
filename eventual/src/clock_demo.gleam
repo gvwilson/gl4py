@@ -9,9 +9,11 @@ import gleam/result
 import gleam/string
 
 pub fn main() {
-  let a = dict.new()
+  let a =
+    dict.new()
     |> dict.insert("n1", 1)
-  let b = dict.new()
+  let b =
+    dict.new()
     |> dict.insert("n1", 2)
     |> dict.insert("n2", 1)
 
@@ -33,13 +35,11 @@ pub fn merge_clocks(
 ) -> dict.Dict(String, Int) {
   dict.combine(a, b, fn(va, vb) { int.max(va, vb) })
 }
+
 // mccole: /merge_fn
 
 // mccole: dominates_fn
-pub fn dominates(
-  a: dict.Dict(String, Int),
-  b: dict.Dict(String, Int),
-) -> Bool {
+pub fn dominates(a: dict.Dict(String, Int), b: dict.Dict(String, Int)) -> Bool {
   let a_entries = dict.to_list(a)
   list.all(a_entries, fn(entry) {
     let #(node, count_a) = entry
@@ -47,12 +47,14 @@ pub fn dominates(
     count_a >= count_b
   })
 }
+
 // mccole: /dominates_fn
 
 // mccole: versioned_type
 pub type Versioned(v) {
   Versioned(value: v, clock: dict.Dict(String, Int))
 }
+
 // mccole: /versioned_type
 
 // mccole: resolve_fn

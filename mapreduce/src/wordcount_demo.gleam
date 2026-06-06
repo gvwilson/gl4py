@@ -7,6 +7,7 @@ import gleam/string
 // mccole: mapresult_type
 type MapResult(k, v) =
   List(#(k, v))
+
 // mccole: /mapresult_type
 
 pub fn main() {
@@ -23,12 +24,11 @@ pub fn main() {
 
 // mccole: word_count_fn
 pub fn word_count(words: List(String)) -> dict.Dict(String, Int) {
-  mapreduce(
-    words,
-    fn(w) { [#(w, 1)] },
-    fn(_key, values) { list.fold(values, 0, fn(a, n) { a + n }) },
-  )
+  mapreduce(words, fn(w) { [#(w, 1)] }, fn(_key, values) {
+    list.fold(values, 0, fn(a, n) { a + n })
+  })
 }
+
 // mccole: /word_count_fn
 
 // mccole: extension_count_fn
@@ -44,6 +44,7 @@ pub fn extension_count(files: List(String)) -> dict.Dict(String, Int) {
     fn(_key, values) { list.fold(values, 0, fn(a, n) { a + n }) },
   )
 }
+
 // mccole: /extension_count_fn
 
 // mccole: mapreduce_fn
@@ -56,6 +57,7 @@ fn mapreduce(
   let grouped = shuffle(pairs)
   dict.map_values(grouped, reducer)
 }
+
 // mccole: /mapreduce_fn
 
 // mccole: shuffle_fn

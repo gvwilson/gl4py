@@ -23,7 +23,10 @@
     -   `Ok(value)` carries a successful result
     -   `Error(reason)` carries a failure description
 -   The type of `reason` is up to you
-    -   It can be a `String`, a custom error type, or anything else
+    -   While `String` is convenient for examples,
+        Gleam developers usually prefer an explicit custom error type
+        so that the compiler can check that every error case is handled
+    -   A custom error type is just another `type` definition:
 -   A caller cannot use the value inside `Ok` without handling the `Error` case
     -   The compiler enforces this
 
@@ -50,7 +53,12 @@
 ## Transforming Results
 
 -   Often want to apply a function to the value inside `Ok` without unwrapping it manually
--   `result.map` does exactly that.
+-   `result.map(r, f)` applies `f` to the value inside `Ok` and rewraps it
+-   `result.try(r, f)` is similar but `f` returns a `Result`,
+    so the double-wrapping `Ok(Ok(v))` is avoided
+    -   Most Gleam developers use `result.try` more often than `result.map`
+-   `result.map_error` transforms the error value in `Error`
+-   `result.unwrap` extracts the value from `Ok` or returns a default
 
 [%inc src/map_demo.gleam mark=map_usage %]
 
@@ -65,6 +73,10 @@
 -   [%g option_type "`Option(a)`" %] is a type with two variants
     -   `Some(value)` wraps a present value
     -   `None` represents absence
+-   `Option` is used mostly for optional fields in records
+    and optional function parameters
+    -   For return types that might fail, `Result` is usually preferred
+    -   `Result` can carry an error message; `Option` cannot
 
 [%inc src/option_demo.gleam mark=option_case %]
 
@@ -79,7 +91,7 @@
     -   If the head `x` is positive, return `Some(x)` immediately
     -   Otherwise, recurse on the tail
 -   An empty list or an all-negative list reaches `[] -> None`
--   This is equivalent to Python's `next((x for x in lst if x > 0), None)`
+-   This is equivalent to Python's `next((x for x in items if x > 0), None)`
     but the return type makes the "might be absent" case explicit
 
 ## Chaining with `use`
@@ -123,8 +135,10 @@ case parse_int("10") {
 -   Use `let assert Ok(x) = ...` only when failure truly cannot happen
     (like initialising a known-good constant at startup)
     -   It [%g panic "panics" %] on `Error`
--   Use `result.map` and `result.try` for short transformations
+-   Use `result.try` and `result.map` for short transformations
 -   Use `use` for chains of three or more fallible operations
+-   Prefer custom error types over `String` for the error type
+    in non-trivial programs
 
 ## Check Understanding
 
@@ -195,7 +209,7 @@ Chain them with `use` so that (for example)
 
 ### First matching element (10 minutes)
 
-Write `find(lst: List(a), pred: fn(a) -> Bool) -> Option(a)`
+Write `find(items: List(a), pred: fn(a) -> Bool) -> Option(a)`
 that returns `Some(x)` for the first element where `pred(x)` is `True`,
 or `None` if no element matches.
 Write it using recursion with a `case` expression.

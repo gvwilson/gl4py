@@ -8,6 +8,7 @@ import gleam/string
 type FileInfo {
   FileInfo(path: String, hash: String, size: Int)
 }
+
 // mccole: /fileinfo
 
 pub fn main() {
@@ -47,10 +48,11 @@ fn find_duplicates_with_size(
       list.length(paths) > 1
     })
 
-  let dup_paths = list.map(dup_groups, fn(entry) {
-    let #(paths, _size) = entry
-    paths
-  })
+  let dup_paths =
+    list.map(dup_groups, fn(entry) {
+      let #(paths, _size) = entry
+      paths
+    })
 
   let savings =
     dup_groups

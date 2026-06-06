@@ -98,9 +98,13 @@
 -   `str_col` confirms that the name column was filtered by the same mask as `age`
 -   The final `make` call returns `Error` for mismatched column lengths
 
-FIXME: explain how to filter rows that are strings - is a separate function needed?
-
-FIXME: can dataframe operations be chained with `|>` ?
+-   To filter rows on a string column, write a similar function
+    that calls `str_col` instead of `int_col`:
+    `filter_rows` requires an integer column for the Boolean mask,
+    so a separate function is needed for string-column filtering
+-   Dataframe operations can be chained with `|>` and `result.try`
+    inside a `use` block because each function takes the dataframe
+    as its first argument
 
 ## Testing
 

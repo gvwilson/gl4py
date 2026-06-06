@@ -8,7 +8,6 @@ pub fn main() {
 
   io.println(string.inspect(safe_divide(10, 2)))
   io.println(string.inspect(safe_divide(10, 0)))
-
 }
 
 // mccole: parse_fn
@@ -18,6 +17,7 @@ fn parse_int(s: String) -> Result(Int, String) {
     Error(_) -> Error("not an integer: " <> s)
   }
 }
+
 // mccole: /parse_fn
 
 // mccole: divide_fn

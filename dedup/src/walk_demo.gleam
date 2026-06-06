@@ -16,6 +16,7 @@ fn get_root() -> String {
       |> result.unwrap(".")
   }
 }
+
 // mccole: /args_fn
 
 // mccole: walk_fn
@@ -40,6 +41,7 @@ fn collect_files(root: String) -> List(#(String, Int)) {
       })
   }
 }
+
 // mccole: /walk_fn
 
 // mccole: hash_fn
@@ -50,6 +52,7 @@ fn hash_file(path: String) -> Result(String, String) {
   simplifile.read(path)
   |> result.map_error(simplifile.describe_error)
 }
+
 // mccole: /hash_fn
 
 // mccole: run_fn
@@ -74,6 +77,7 @@ fn run(root: String) -> String {
       <> " bytes could be freed"
   }
 }
+
 // mccole: /run_fn
 
 pub fn main() {
@@ -104,10 +108,11 @@ fn find_duplicates_with_size(
       list.length(paths) > 1
     })
 
-  let dup_paths = list.map(dup_groups, fn(entry) {
-    let #(paths, _) = entry
-    paths
-  })
+  let dup_paths =
+    list.map(dup_groups, fn(entry) {
+      let #(paths, _) = entry
+      paths
+    })
 
   let savings =
     list.fold(dup_groups, 0, fn(acc, entry) {

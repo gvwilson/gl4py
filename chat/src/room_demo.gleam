@@ -27,6 +27,7 @@ pub fn main() {
 pub type Room {
   Room(name: String, users: List(String), messages: List(#(String, String)))
 }
+
 // mccole: /room_type
 
 pub fn new_room(messages: List(#(String, String))) -> Room {
@@ -58,6 +59,7 @@ pub fn handle_message(room: Room, msg: Msg) -> Room {
     }
   }
 }
+
 // mccole: /handle_fn
 
 pub fn list_users(room: Room) -> List(String) {

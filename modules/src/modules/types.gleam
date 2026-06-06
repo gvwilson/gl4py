@@ -7,6 +7,7 @@ pub type Status {
 pub type Todo {
   Todo(title: String, status: Status)
 }
+
 // mccole: /status_todo
 
 // mccole: display_status

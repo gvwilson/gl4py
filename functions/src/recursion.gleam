@@ -20,6 +20,7 @@ fn length(lst: List(a)) -> Int {
     [_, ..rest] -> 1 + length(rest)
   }
 }
+
 // mccole: /length_fn
 
 // mccole: factorial_fn
@@ -33,6 +34,7 @@ fn factorial_tail(n: Int, acc: Int) -> Int {
     _ -> factorial_tail(n - 1, acc * n)
   }
 }
+
 // mccole: /factorial_fn
 
 // mccole: take_fn

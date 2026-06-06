@@ -15,6 +15,7 @@ pub type Worker {
 pub type Pool {
   Pool(workers: List(Worker), results: List(Int))
 }
+
 // mccole: /pool_type
 
 pub fn main() {
@@ -62,6 +63,7 @@ pub fn dispatch_jobs(workers: List(Worker), jobs: List(Job)) -> Pool {
     }
   })
 }
+
 // mccole: /dispatch_fn
 
 // mccole: append_capped_fn
@@ -72,6 +74,7 @@ pub fn append_capped(history: List(a), item: a, limit: Int) -> List(a) {
     False -> updated
   }
 }
+
 // mccole: /append_capped_fn
 
 // mccole: crash_restart_fn

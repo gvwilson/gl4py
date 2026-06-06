@@ -1,7 +1,7 @@
+import clock_demo.{dominates, merge_clocks}
 import gleam/dict
 import gleeunit
 import gleeunit/should
-import clock_demo.{dominates, merge_clocks}
 
 pub fn main() {
   gleeunit.main()

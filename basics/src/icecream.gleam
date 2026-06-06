@@ -15,6 +15,7 @@ type Container {
 type IceCream {
   IceCream(flavor: Flavor, container: Container)
 }
+
 // mccole: /icecream_type
 
 pub fn main() {
@@ -31,6 +32,7 @@ pub fn main() {
 fn display(item: IceCream) -> String {
   flavor_string(item.flavor) <> " in a " <> container_string(item.container)
 }
+
 // mccole: /display_fn
 
 fn flavor_string(flavor: Flavor) -> String {
