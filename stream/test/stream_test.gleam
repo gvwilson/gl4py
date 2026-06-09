@@ -45,6 +45,7 @@ pub fn fold_with_header_skips_first_test() {
   fold_with_header(csv, 0, fn(acc, _) { acc + 1 })
   |> should.equal(2)
 }
+// mccole: /tests
 
 pub fn fold_with_header_sum_test() {
   let csv = "name,score\nAlice,10\nBob,20\nCarol,30"
@@ -68,4 +69,3 @@ pub fn fold_csv_same_as_fold_rows_test() {
   let by_chunk = fold_csv(csv, 0, fn(acc, _) { acc + 1 })
   by_line |> should.equal(by_chunk)
 }
-// mccole: /tests

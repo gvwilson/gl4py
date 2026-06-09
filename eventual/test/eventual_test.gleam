@@ -40,6 +40,7 @@ pub fn concurrent_test() {
   dominates(b, a)
   |> should.be_false()
 }
+// mccole: /tests
 
 pub fn merged_dominates_both_test() {
   let a = dict.from_list([#("n1", 2)])
@@ -50,4 +51,3 @@ pub fn merged_dominates_both_test() {
   dominates(merged, b)
   |> should.be_true()
 }
-// mccole: /tests
