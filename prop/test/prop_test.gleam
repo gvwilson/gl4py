@@ -39,6 +39,7 @@ pub fn reverse_twice_is_identity_test() {
   check(gen, fn(xs) { list.reverse(list.reverse(xs)) == xs }, 100, Seed(42))
   |> should.equal(Ok(Nil))
 }
+
 // mccole: /tests
 
 pub fn sort_idempotent_test() {

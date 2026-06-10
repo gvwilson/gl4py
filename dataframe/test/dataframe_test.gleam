@@ -50,6 +50,7 @@ pub fn col_sum_test() {
   let df = make([#("v", IntCol([1, 2, 3, 4]))]) |> should.be_ok()
   col_sum(df, "v") |> should.equal(Ok(10))
 }
+
 // mccole: /tests
 
 pub fn select_keeps_named_cols_test() {

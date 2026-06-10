@@ -40,6 +40,7 @@ pub fn concurrent_test() {
   dominates(b, a)
   |> should.be_false()
 }
+
 // mccole: /tests
 
 pub fn merged_dominates_both_test() {

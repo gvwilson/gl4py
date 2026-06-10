@@ -4,10 +4,9 @@
 
 -   When several operations each return `Result`,
     nesting `case` expressions quickly becomes unreadable.
--   `use x <- f(...)` is [%g syntactic_sugar "syntactic sugar" %]
-    that rewrites the rest of the block as a [%g callback "callback" %] passed to `f`.
+-   `use x <- f(...)` rewrites the rest of the block as a callback passed to `f`.
 -   Any function that accepts a callback as its last argument works with `use`.
--   Used with `result.try`, `use` eliminates deeply nested error-handling code.
+-   Combined with `result.try`, `use` eliminates deeply nested error-handling code.
 
 </div>
 
@@ -15,7 +14,7 @@
 
 -   When you call several functions that each return `Result`,
     you need to unwrap each one before using it
--   A single `case` is fine; three in a row is not
+-   A single `case` is fine; three in a row is hard to read
 
 [%inc src/nesting_demo.gleam mark=nested_ok %]
 [%inc out/nesting_demo.out %]
@@ -35,15 +34,22 @@
 
 ## Flattening with use
 
--   `use` rewrites nested callbacks as a flat sequence of steps
+-   `use` rewrites nested [%g callback "callback" %] as a flat sequence of steps
+    -   This is called [%g syntactic_sugar "syntactic sugar" %] because it sweetens the language
+    -   Translating the easy-to-read form into the basic form is called [%g desugaring "desugaring" %]
+    -   This is what passes for wit among language designers
+-   `result.try(result, callback)` calls `callback` with the value inside `Ok(x)`,
+    or returns `Error` unchanged without calling the callback at all
 
 [%inc src/use_result_demo.gleam mark=use_ok %]
 [%inc out/use_result_demo.out %]
 
 -   Each `use` line extracts the value from `Ok` and binds it to a name
 -   If any step returns `Error`, the whole block [%g short_circuit "short-circuits" %]
-    to that error immediately
+    and produces that error immediately
     -   The remaining steps are never evaluated
+    -   Because when `result.try` receives an `Error`,
+        it returns it directly without calling the callback
 -   The final expression is the result of the whole block
 -   Compare the two versions: the `use` form reads like a plain sequence of steps
 
@@ -57,8 +63,8 @@
 
 ## How use Works
 
--   `use` is not special-cased for `Result`; it is a general rewrite rule
--   `use x <- f(a, b)` followed by a block body is equivalent to:
+-   `use` is not special-cased for `Result`: it is a general rewrite rule
+-   `use x <- f(a, b)` followed by a block of code is equivalent to:
 
 ```gleam
 f(a, b, fn(x) {
@@ -66,6 +72,8 @@ f(a, b, fn(x) {
 })
 ```
 
+-   The `x` in `fn(x)` is exactly the same binding as the `x` introduced by `use x <-`
+    -   The rewrite is one-for-one, so the name carries over directly
 -   In other words: call `f` with its normal arguments plus one extra argument,
     a function that takes `x` and contains the rest of the block
 -   The function that receives the callback decides what to do with it
@@ -82,7 +90,15 @@ f(a, b, fn(x) {
 [%inc src/use_general_demo.gleam mark=callback_use %]
 
 -   `with_greeting` takes a name and a callback, and passes the constructed greeting to the callback
--   Both forms produce the same output; `use` just removes the anonymous function syntax
+-   Both forms produce the same output
+    -   `use` just removes the anonymous function syntax
+-   The `use` form expands to exactly the same call as the explicit version:
+
+```gleam
+with_greeting("with use", fn(greeting) {
+  io.println(greeting)
+})
+```
 
 [%inc src/use_general_demo.gleam mark=list_each %]
 [%inc out/use_general_demo.out %]
@@ -91,6 +107,7 @@ f(a, b, fn(x) {
 -   `use item <- list.each([1, 2, 3])` is equivalent to writing
     `list.each([1, 2, 3], fn(item) { ... })`
 -   The rest of the block becomes the body of the anonymous function
+    -   No curly braces because it's a single expression
 
 ## Guidelines for use
 
@@ -137,6 +154,16 @@ The function controls what it does with that callback:
 `list.each` calls it once per element,
 and a custom function can call it however it likes.
 The `Result` type has no special relationship to `use`.
+
+</details>
+
+<details markdown="1">
+<summary markdown="1">If `result.try` were replaced by a function that always calls its callback, could the block still short-circuit?</summary>
+
+No.
+Short-circuiting is not a property of `use` itself — it is a property of `result.try`.
+`use` only rewrites syntax; whether the callback is called, skipped, or called multiple times depends entirely on what the receiving function does.
+A function that always calls its callback will always execute the rest of the block, regardless of how many `use` lines appear.
 
 </details>
 

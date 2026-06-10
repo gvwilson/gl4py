@@ -8,12 +8,12 @@ fn with_greeting(name: String, callback: fn(String) -> Nil) -> Nil {
 
 pub fn main() {
   // mccole: callback_long
-  with_greeting("Gleam", fn(greeting) { io.println(greeting) })
+  with_greeting("long form", fn(greeting) { io.println(greeting) })
   // mccole: /callback_long
 
   // mccole: callback_use
   {
-    use greeting <- with_greeting("Gleam")
+    use greeting <- with_greeting("with use")
     io.println(greeting)
   }
   // mccole: /callback_use

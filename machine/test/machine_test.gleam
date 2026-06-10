@@ -44,6 +44,7 @@ pub fn invalid_transition_test() {
   step(Idle, Sent)
   |> should.be_error()
 }
+
 // mccole: /tests
 
 pub fn happy_path_test() {

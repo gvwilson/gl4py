@@ -70,6 +70,10 @@
 :   A syntax that unpacks a tuple or record into individual named
     bindings in a single expression.
 
+<span id="desugaring">desugaring</span>
+:   The process of transforming syntactic sugar into its underlying,
+    more primitive equivalent
+
 <span id="dispatch">dispatch</span>
 :   The selection of a specific code path based on the structure or
     value of arguments, typically via pattern matching on a tuple of

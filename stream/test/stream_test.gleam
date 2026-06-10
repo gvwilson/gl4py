@@ -45,6 +45,7 @@ pub fn fold_with_header_skips_first_test() {
   fold_with_header(csv, 0, fn(acc, _) { acc + 1 })
   |> should.equal(2)
 }
+
 // mccole: /tests
 
 pub fn fold_with_header_sum_test() {
