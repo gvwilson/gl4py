@@ -1,6 +1,6 @@
 # Modules, Imports, and Testing
 
-<div class="callout" markdown="1">
+<div class="syllabus" markdown="1">
 
 -   Gleam modules map one-to-one to source files:
     the file path determines the module name

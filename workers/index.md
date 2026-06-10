@@ -1,6 +1,6 @@
 # Supervised Worker Pool
 
-<div class="callout" markdown="1">
+<div class="syllabus" markdown="1">
 
 -   A worker pool distributes jobs across multiple workers;
     the pool tracks which workers are alive and which have crashed.

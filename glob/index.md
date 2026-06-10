@@ -1,6 +1,6 @@
 # Glob Pattern Matcher
 
-<div class="callout" markdown="1">
+<div class="syllabus" markdown="1">
 
 -   Shell-style glob patterns like `*.gleam` and `data?.csv`
     can be represented as lists of typed elements.

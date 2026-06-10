@@ -1,6 +1,6 @@
 # To-Do List Web API
 
-<div class="callout" markdown="1">
+<div class="syllabus" markdown="1">
 
 -   A three-tier web service separates HTTP handling,
     business logic,

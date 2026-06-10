@@ -1,6 +1,6 @@
 # Getting Started, Types, and Values
 
-<div class="callout" markdown="1">
+<div class="syllabus" markdown="1">
 
 -   "Let" bindings are immutable:
     once you bind a name to a value, that binding cannot change.

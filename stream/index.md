@@ -1,6 +1,6 @@
 # Streaming CSV Processing
 
-<div class="callout" markdown="1">
+<div class="syllabus" markdown="1">
 
 -   Loading an entire CSV file into memory before processing wastes resources
     and fails on files larger than available RAM.

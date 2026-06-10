@@ -1,6 +1,6 @@
 # Introduction
 
-<div class="callout" markdown="1">
+<div class="syllabus" markdown="1">
 
 -   Gleam is a statically-typed, purely functional language that runs on the
     Erlang VM and can also compile to JavaScript.

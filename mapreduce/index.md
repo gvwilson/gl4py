@@ -1,6 +1,6 @@
 # MapReduce
 
-<div class="callout" markdown="1">
+<div class="syllabus" markdown="1">
 
 -   MapReduce splits data processing into three phases: map, shuffle, and reduce.
 -   The map phase applies a user function to each input, producing `(key, value)` pairs.

@@ -1,6 +1,6 @@
 # Lustre Frontend Counter and Form
 
-<div class="callout" markdown="1">
+<div class="syllabus" markdown="1">
 
 -   Lustre compiles Gleam to JavaScript and runs the Elm architecture in the browser.
 -   The model is a plain record;

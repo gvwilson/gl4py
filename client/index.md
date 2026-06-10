@@ -1,6 +1,6 @@
 # HTTP API Client with JSON Decoding
 
-<div class="callout" markdown="1">
+<div class="syllabus" markdown="1">
 
 -   `gleam/dynamic/decode` provides composable decoders that convert
     untyped external data into typed Gleam values.

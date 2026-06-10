@@ -1,6 +1,6 @@
 # Functions, Pattern Matching, Lists, and Pipelines
 
-<div class="callout" markdown="1">
+<div class="syllabus" markdown="1">
 
 -   Gleam has no `for` or `while` loops: use recursion instead.
 -   Tail recursion with an accumulator prevents stack overflow for large inputs.

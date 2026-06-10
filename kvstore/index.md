@@ -1,6 +1,6 @@
 # Log-Structured Key-Value Store
 
-<div class="callout" markdown="1">
+<div class="syllabus" markdown="1">
 
 -   An append-only log records every `Set` and `Delete` operation as an immutable entry.
 -   Looking up the current value of a key requires scanning the log for the most recent entry.

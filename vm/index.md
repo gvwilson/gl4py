@@ -1,6 +1,6 @@
 # Virtual Machine
 
-<div class="callout" markdown="1">
+<div class="syllabus" markdown="1">
 
 -   A simple computer can be modelled as a record holding an instruction pointer,
      a register file, and a block of memory.

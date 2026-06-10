@@ -1,6 +1,6 @@
 # Property-Based Testing
 
-<div class="callout" markdown="1">
+<div class="syllabus" markdown="1">
 
 -   Unit tests check specific examples;
     property-based tests check universal statements

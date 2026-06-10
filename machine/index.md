@@ -1,6 +1,6 @@
 # State Machines
 
-<div class="callout" markdown="1">
+<div class="syllabus" markdown="1">
 
 -   A finite state machine models a system as a fixed set of states
     and a function that maps (state, event) pairs to the next state.

@@ -1,6 +1,6 @@
 # File Deduplicator
 
-<div class="callout" markdown="1">
+<div class="syllabus" markdown="1">
 
 -   Files with identical content have identical cryptographic hashes.
 -   `gleam/dict` provides an efficient key-value store.

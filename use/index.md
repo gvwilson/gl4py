@@ -1,6 +1,6 @@
 # The use Expression
 
-<div class="callout" markdown="1">
+<div class="syllabus" markdown="1">
 
 -   When several operations each return `Result`,
     nesting `case` expressions quickly becomes unreadable.

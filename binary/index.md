@@ -110,7 +110,7 @@ and in pattern matching (`<<n:32-big, rest:bits>>`).
 <div class="callout" markdown="1">
 
 Python's `struct.pack(">I", 42)` and `struct.unpack(">I", data)` do the same job
- but the format string is parsed at runtime.
+but the format string is parsed at runtime.
 A typo in `">II"` (two integers) is a runtime error, not a compile error.
 
 Gleam checks the `BitArray` annotations at compile time.

@@ -1,6 +1,6 @@
 # Dataframes in Gleam
 
-<div class="callout" markdown="1">
+<div class="syllabus" markdown="1">
 
 -   A dataframe is a table of named, typed columns
     that all share the same number of rows.

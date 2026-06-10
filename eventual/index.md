@@ -1,6 +1,6 @@
 # Vector Clocks and Eventual Consistency
 
-<div class="callout" markdown="1">
+<div class="syllabus" markdown="1">
 
 -   The CAP theorem says a distributed system subject to network partitions
     must choose between consistency and availability.

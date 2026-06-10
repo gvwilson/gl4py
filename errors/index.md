@@ -1,6 +1,6 @@
 # Results, Options, and Error Handling
 
-<div class="callout" markdown="1">
+<div class="syllabus" markdown="1">
 
 -   Gleam has no exceptions: errors are ordinary values returned by functions.
 -   The `Result` type carries either a success value (`Ok`) or a failure reason (`Error`).
