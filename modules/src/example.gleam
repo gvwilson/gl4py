@@ -1,6 +1,6 @@
 import gleam/io
-import modules/logic
-import modules/types
+import utils/logic
+import utils/types
 
 pub fn main() {
   let tasks = [

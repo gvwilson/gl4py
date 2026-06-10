@@ -95,14 +95,13 @@
 ## Guidelines for Handling Errors
 
 -   Return `Result` whenever a function might fail for an externally visible reason
-     (bad input, missing file, network error)
+    (e.g., bad input, missing file, or network error)
 -   Return `Option` when absence is the only failure mode
 -   Use `let assert Ok(x) = ...` only when failure truly cannot happen
     (like initialising a known-good constant at startup)
     -   It [%g panic "panics" %] on `Error`
     -   Unlike Python's `assert`, which is a statement that checks a condition,
-        Gleam's `let assert` is a binding form:
-        it matches a pattern and brings variables into scope
+        Gleam's `let assert` matches a pattern *and* creates a variable
 
 [%inc src/assert_demo.gleam mark=assert_demo %]
 [%inc out/assert_demo.out %]
@@ -110,6 +109,14 @@
 -   Use `result.try` and `result.map` for short transformations
 -   Prefer custom error types over `String` for the error type
     in non-trivial programs
+
+## A Note on Assertions
+
+-   Gleam also allows bare assertions like `assert left == right`
+    -   Panics if the condition is not true
+-   Used less often than the `let assert` form
+    -   Most functions return `Result`, and if it's `Ok(val)`, we usually want the value
+-   Discussed more in the section on [modules](@/modules/)
 
 ## Check Understanding
 

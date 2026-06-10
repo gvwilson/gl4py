@@ -19,60 +19,61 @@
 -   Standard library modules follow the same convention:
     `import gleam/list`, `import gleam/dict`, `import gleam/string`
     -   [%g circular_import "Circular imports" %] are not allowed
-    -   Gleam packages are *not* automatically namespaced:
-        if two dependencies both export a module named `utils`,
-        there will be a name conflict
+-   If two dependencies both export a module named `utils`,
+    there will be a name conflict
+    -   `import a/utils as au` works as you'd expect
 
 ## This Lesson
 
--   `src/modules/types.gleam` contains shared type definitions
--   `src/modules/logic.gleam` contains pure functions over those types
--   `src/modules.gleam` is the entry point that wires them together
+-   `src/utils/types.gleam` contains shared type definitions
+-   `src/utils/logic.gleam` contains pure functions over those types
+-   `src/example.gleam` is the entry point that wires them together
 
 ## Public and Private Definitions
 
 -   Every function and type in Gleam is private by default
+    -   I.e., only visible in its own file
 -   Adding `pub` makes it accessible from other modules
 
-[%inc src/modules/types.gleam mark=status_todo %]
+[%inc src/utils/types.gleam mark=status_todo %]
 
 -   `pub type Status` exports the type and its constructors (`Active`, `Done`)
     -   Other modules can create `Active` or `Done` values
 -   `pub type Todo` exports the record type and its constructor
     -   Other modules can write `Todo(title: "...", status: Active)`
--   Omit `pub` and the type is invisible outside the file
 
-[%inc src/modules/types.gleam mark=display_status %]
+[%inc src/utils/types.gleam mark=display_status %]
 
 -   Use private functions for implementation details that callers should not depend on directly
-    -   E.g., have a public entry point and a private function to do the recursion
+    -   E.g., have a public entry point to start computing
+        and a private function to do the recursion
 
 ## Opaque Types
 
--   An [%g opaque_type "opaque type" %] makes the type name public
-    but hides its constructors
+-   An [%g opaque_type "opaque type" %] declared with `opaque`
+    makes the type name public but hides its constructors
 -   Other modules can hold a value of the type but cannot create or inspect it directly
     -   They must use the functions the module provides
 
-[%inc src/modules/counter.gleam mark=counter_type %]
+[%inc src/utils/counter.gleam mark=counter_type %]
 
 -   `Counter` is visible to other modules
 -   `Counter(42)` is not: only `new()` can create a `Counter`
--   Common use: collections that enforce invariants
-    -   Sorted lists, non-empty lists, validated email addresses, etc.
+-   A common use is collections that enforce invariants
+    -   E.g., sorted lists, non-empty lists, validated email addresses, etc.
 
 ## Organising by Layer
 
 -   The `logic` module contains pure functions that take and return plain data:
 
-[%inc src/modules/logic.gleam mark=add_task %]
+[%inc src/utils/logic.gleam mark=add_task %]
 
 -   `add_task` has no side effects: list in, list out
     -   Easy to test: call it, inspect the result
--   It uses `types.Todo` and `types.Active` because `modules/types` is imported at the top of the file
+-   It uses `types.Todo` and `types.Active` because `utils/types` is imported at the top of the file
 -   Prepending with `[new_item, ..existing]` is idiomatic: it runs in constant time
 
-[%inc src/modules/logic.gleam mark=render %]
+[%inc src/utils/logic.gleam mark=render %]
 
 -   `render` is also pure: `List(Todo)` in, `String` out
 -   `list.index_map(fn(i, task) { ... })` maps with a zero-based index
@@ -88,21 +89,24 @@
 ## Testing with gleeunit
 
 -   Gleam's test runner is `gleeunit`
--   Tests live in `test/` in files named `*_test.gleam`
+-   Put tests in files named `*_test.gleam` in the `test/` directory
 
 [%inc test/modules_test.gleam mark=test_examples %]
 
 -   Every function ending in `_test` runs automatically
--   Use `let assert` to check values in tests:
-    `let assert Ok(value) = result` gives you the unwrapped value,
-    while a mismatched assertion fails the test with a clear message
+-   Use `should.equal` from `gleeunit/should` to assert that two values match:
+    pipe the actual value into `|> should.equal(expected)`,
+    and gleeunit reports a clear failure message if they differ
+-   Use `should.be_true(condition)` or `should.be_false(condition)`
+    when the result is already a `Bool`
+    and there is no natural expected value to compare against
 -   `gleam test` runs all tests, `gleam test --module foo_test` runs one file
 
 ## Type Aliases
 
 -   `type MyAlias = SomeOtherType` creates a readable name for an existing type.
 
-[%inc src/modules/aliases.gleam mark=type_aliases %]
+[%inc src/utils/aliases.gleam mark=type_aliases %]
 
 -   `Filename` and `String` are identical to the compiler; one is just more descriptive
 -   Unlike opaque types, aliases do not hide constructors
@@ -174,7 +178,7 @@ Confirm `gleam build` still succeeds.
 
 ### Opaque stack (15 minutes)
 
-Define `pub opaque type Stack(a)` in a new file `src/modules/stack.gleam`.
+Define `pub opaque type Stack(a)` in a new file `src/utils/stack.gleam`.
 Implement `new() -> Stack(a)`, `push(Stack(a), a) -> Stack(a)`,
 `pop(Stack(a)) -> Result(#(a, Stack(a)), Nil)`, and `size(Stack(a)) -> Int`.
 `pop` should return `Error(Nil)` on an empty stack.

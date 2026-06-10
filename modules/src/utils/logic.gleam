@@ -1,7 +1,7 @@
 import gleam/int
 import gleam/list
 import gleam/string
-import modules/types
+import utils/types
 
 // mccole: add_task
 pub fn add_task(tasks: List(types.Todo), title: String) -> List(types.Todo) {

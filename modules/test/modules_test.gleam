@@ -1,7 +1,7 @@
 import gleeunit
 import gleeunit/should
-import modules/logic
-import modules/types
+import utils/logic
+import utils/types
 
 pub fn main() {
   gleeunit.main()
