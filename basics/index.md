@@ -83,6 +83,10 @@
 -   Now a function that uses the type:
 
 [%inc src/types.gleam mark=area_fn %]
+
+-   Let's watch them run:
+
+[%inc src/types.gleam mark=main %]
 [%inc out/types.out %]
 
 -   `case shape { ... }` matches on the value of `shape`

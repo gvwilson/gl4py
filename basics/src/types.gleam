@@ -16,6 +16,16 @@ type Shape {
 
 // mccole: /type_defs
 
+// mccole: area_fn
+fn area(shape: Shape) -> Float {
+  case shape {
+    Circle(r) -> 3.14159 *. r *. r
+    Rectangle(w, h) -> w *. h
+  }
+}
+// mccole: /area_fn
+
+// mccole: main
 pub fn main() {
   let c = Red
   io.println("red is " <> string.inspect(c))
@@ -29,11 +39,4 @@ pub fn main() {
   io.println("rectangle area is " <> float.to_string(area(s2)))
 }
 
-// mccole: area_fn
-fn area(shape: Shape) -> Float {
-  case shape {
-    Circle(r) -> 3.14159 *. r *. r
-    Rectangle(w, h) -> w *. h
-  }
-}
-// mccole: /area_fn
+// mccole: main
