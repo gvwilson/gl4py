@@ -1,4 +1,4 @@
-import gleam/dynamic
+import gleam/dynamic/decode
 import gleam/list
 import gleam/result
 import sqlight.{type Connection}
@@ -16,13 +16,11 @@ fn insert_todo(conn: Connection, title: String) -> Result(Todo, String) {
 // mccole: /insert_todo_fn
 
 // mccole: row_decoder_fn
-fn row_decoder() -> dynamic.Decoder(Todo) {
-  dynamic.decode3(
-    fn(id, title, done) { Todo(id, title, done == 1) },
-    dynamic.element(0, dynamic.int),
-    dynamic.element(1, dynamic.string),
-    dynamic.element(2, dynamic.int),
-  )
+fn row_decoder() -> decode.Decoder(Todo) {
+  use id <- decode.field(0, decode.int)
+  use title <- decode.field(1, decode.string)
+  use done <- decode.field(2, decode.int)
+  decode.success(Todo(id, title, done == 1))
 }
 // mccole: /row_decoder_fn
 
