@@ -2,6 +2,7 @@ import gleam/int
 import gleam/io
 import gleam/string
 
+// mccole: main
 pub fn main() {
   io.println(string.inspect(parse_int("42")))
   io.println(string.inspect(parse_int("not a number")))
@@ -9,6 +10,7 @@ pub fn main() {
   io.println(string.inspect(safe_divide(10, 2)))
   io.println(string.inspect(safe_divide(10, 0)))
 }
+// mccole: /main
 
 // mccole: parse_fn
 fn parse_int(s: String) -> Result(Int, String) {

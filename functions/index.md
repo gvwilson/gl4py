@@ -86,6 +86,7 @@ fn add(a: Int, b: Int) -> Int {
 -   The Gleam compiler (and the BEAM VM) optimise tail calls so they do not grow the stack
 
 [%inc src/recursion.gleam mark=take_fn %]
+[%inc src/recursion.gleam mark=main %]
 [%inc out/recursion.out %]
 
 -   Matching on two values simultaneously: `case items, n { ... }`

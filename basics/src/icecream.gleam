@@ -18,6 +18,7 @@ type IceCream {
 
 // mccole: /icecream_type
 
+// mccole: main
 pub fn main() {
   let choc_cone = IceCream(flavor: Chocolate, container: Cone)
   let van_cup = IceCream(flavor: Vanilla, container: Cup)
@@ -27,6 +28,7 @@ pub fn main() {
   io.println("vanilla cone is " <> display(van_cup))
   io.println("strawberry cone is " <> display(straw_cone))
 }
+// mccole: /main
 
 // mccole: display_fn
 fn display(item: IceCream) -> String {

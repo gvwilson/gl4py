@@ -41,6 +41,7 @@
     -   But no way to know this from the function's type
 
 [%inc src/result_demo.gleam mark=divide_fn %]
+[%inc src/result_demo.gleam mark=main %]
 [%inc out/result_demo.out %]
 
 -   `safe_divide` returns `Error("division by zero")`
@@ -83,6 +84,7 @@
 -   The compiler will not let you use `n` outside the `Some` arm
 
 [%inc src/option_demo.gleam mark=first_pos %]
+[%inc src/option_demo.gleam mark=main %]
 [%inc out/option_demo.out %]
 
 -   `[x, .._rest] if x > 0` combines a list pattern with a guard

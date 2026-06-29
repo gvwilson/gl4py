@@ -2,6 +2,7 @@ import gleam/int
 import gleam/io
 import gleam/string
 
+// mccole: main
 pub fn main() {
   let nums = [1, 2, 3, 4, 5]
   io.println("length nums = " <> int.to_string(length(nums)))
@@ -13,6 +14,7 @@ pub fn main() {
   io.println("take 3 = " <> string.inspect(take(nums, 3)))
   io.println("take 10 = " <> string.inspect(take(nums, 10)))
 }
+// mccole: /main
 
 // mccole: length_fn
 fn length(lst: List(a)) -> Int {

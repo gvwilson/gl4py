@@ -3,6 +3,7 @@ import gleam/io
 import gleam/option
 import gleam/string
 
+// mccole: main
 pub fn main() {
   io.println(string.inspect(option_inspect(option.Some(42))))
   io.println(string.inspect(option_inspect(option.None)))
@@ -13,6 +14,7 @@ pub fn main() {
   io.println(string.inspect(first_positive([-1, 3, 0])))
   io.println(string.inspect(first_positive([-1, -2, -3])))
 }
+// mccole: /main
 
 // mccole: option_case
 fn option_inspect(opt: option.Option(Int)) -> String {

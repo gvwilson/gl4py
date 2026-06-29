@@ -113,6 +113,7 @@
     -   You can also write `IceCream(Chocolate, Cone)` when the order is unambiguous
 
 [%inc src/icecream.gleam mark=display_fn %]
+[%inc src/icecream.gleam mark=main %]
 [%inc out/icecream.out %]
 
 -   `item.flavor` and `item.container` access named fields using dot notation
